@@ -133,7 +133,7 @@ def view():
     return{"PAYMENT DETAILS":myresult}
 @app.get("/all")
 def all():
-    sql= "SELECT stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method FROM stu INNER JOIN fess ON stu.spr_no = fess.spr_no GROUP BY  stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method"
+    sql= "SELECT stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fees.bill_no,fess.bill_date,fees.amt_payed,fees.method FROM stu INNER JOIN fess ON stu.spr_no = fees.spr_no GROUP BY  stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fees.bill_no,fees.bill_date,fees.amt_payed,fees.method"
     mycursor.execute(sql)
     myresult = mycursor.fetchall()
     return {"PAYMENT DETAILS": myresult}
@@ -141,14 +141,14 @@ def all():
 @app.get("/det")
 def det(spr_no: int):
     val=(spr_no,)
-    sql="SELECT stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method FROM stu INNER JOIN fees ON stu.spr_no = fess.spr_no where fees.spr_no= %s GROUP BY stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method"
+    sql="SELECT stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fees.bill_no,fees.bill_date,fees.amt_payed,fees.method FROM stu INNER JOIN fees ON stu.spr_no = fees.spr_no where fees.spr_no= %s GROUP BY stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fees.bill_no,fees.bill_date,fees.amt_payed,fees.method"
     mycursor.execute(sql,val)
     myresult = mycursor.fetchall()
     return {"PAYMENT DETAILS": myresult}
 @app.get("/bet")
 def bet(from_date: date,to_date :date):
     val=(from_date,to_date)
-    sql = "SELECT stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method FROM stu INNER JOIN fees ON stu.spr_no = fees.spr_no where bill_date between %s and %s GROUP BY stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method"
+    sql = "SELECT stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fees.bill_no,fees.bill_date,fees.amt_payed,fees.method FROM stu INNER JOIN fees ON stu.spr_no = fees.spr_no where bill_date between %s and %s GROUP BY stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fees.bill_no,fees.bill_date,fees.amt_payed,fees.method"
     mycursor.execute(sql, val)
     myresult = mycursor.fetchall()
     return {"PAYMENT DETAILS": myresult}
