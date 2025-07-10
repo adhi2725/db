@@ -35,7 +35,7 @@ def fees(spr_no:int,
          amt_payed : int,
          method : str):
     sql = "INSERT INTO fees VALUES(%s,%s,%s,%s,%s,%s)"
-    val = (spr_no, detail, bill_no,amt_payed, method,bill_date)
+    val = (spr_no, details, bill_no,amt_payed, method,bill_date)
     mycursor.execute(sql,val)
     mydb.commit()
     return {"Message": "Values insert successfully "}
