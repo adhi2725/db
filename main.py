@@ -21,7 +21,7 @@ def insert( spr_no : int,
             mess_fees : int,
             maintances_fees : int ,
             bus_fees : int,):
-    sql = "INSERT INTO STU VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    sql = "INSERT INTO stu VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     val = (spr_no, name, dept, ph_no, tusion_fees, hostel_fees, mess_fees, maintances_fees, bus_fees)
     mycursor.execute(sql, val)
     mydb.commit()
