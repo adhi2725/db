@@ -42,7 +42,7 @@ def fees(spr_no:int,
 
 @app.patch("/update1")
 def update1(old :int , new :int):
-    sql = "UPDATE stu SET spr_NO = %s WHERE spr_NO =%s"
+    sql = "UPDATE stu SET spr_nO = %s WHERE spr_no =%s"
     val = (new, old)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -50,7 +50,7 @@ def update1(old :int , new :int):
 
 @app.patch("/update2")
 def update2(spr_no :int , name:str):
-    sql = "UPDATE stu SET name = %s WHERE spr_NO =%s"
+    sql = "UPDATE stu SET name = %s WHERE spr_no =%s"
     val = (name, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -58,7 +58,7 @@ def update2(spr_no :int , name:str):
 
 @app.patch("/update3")
 def update3(spr_no :int , dept:str):
-    sql = "UPDATE stu SET dept = %s WHERE spr_NO =%s"
+    sql = "UPDATE stu SET dept = %s WHERE spr_no =%s"
     val = (dept, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -66,7 +66,7 @@ def update3(spr_no :int , dept:str):
 
 @app.patch("/update4")
 def update4(spr_no :int , ph:int):
-    sql = "UPDATE stu SET PH_NO = %s WHERE spr_NO =%s"
+    sql = "UPDATE stu SET ph_no = %s WHERE spr_no =%s"
     val = (ph, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -74,7 +74,7 @@ def update4(spr_no :int , ph:int):
 
 @app.patch("/update5")
 def update5(spr_no :int , tf :int):
-    sql = "UPDATE stu SET  TUSION_FEES = %s WHERE spr_NO =%s"
+    sql = "UPDATE stu SET  tusion_fees = %s WHERE spr_no =%s"
     val = (tf, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -82,7 +82,7 @@ def update5(spr_no :int , tf :int):
 
 @app.patch("/update6")
 def update6(spr_no :int , hf :int):
-    sql = "UPDATE stu SET  HOSTEL_FEES = %s WHERE spr_NO =%s"
+    sql = "UPDATE stu SET  hostel_fees = %s WHERE spr_no =%s"
     val = (hf, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -90,7 +90,7 @@ def update6(spr_no :int , hf :int):
 
 @app.patch("/update7")
 def update7(spr_no :int , bf :int):
-    sql = "UPDATE stu SET  BUS_FEES = %s WHERE spr_NO =%s"
+    sql = "UPDATE stu SET  bus_fees = %s WHERE spr_no =%s"
     val = (bf, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -98,7 +98,7 @@ def update7(spr_no :int , bf :int):
 
 @app.patch("/update8")
 def update8(spr_no :int , mf :int):
-    sql = "UPDATE stu SET  MESS_FEES = %s WHERE spr_NO =%s"
+    sql = "UPDATE stu SET  mess_fees = %s WHERE spr_no =%s"
     val = (mf, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -106,7 +106,7 @@ def update8(spr_no :int , mf :int):
 
 @app.patch("/update9")
 def update9(spr_no :int , mtf :int):
-    sql = "UPDATE stu SET  maintances_FEES = %s WHERE spr_NO =%s"
+    sql = "UPDATE stu SET  maintances_fees = %s WHERE spr_no =%s"
     val = (mtf, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
@@ -115,7 +115,7 @@ def update9(spr_no :int , mtf :int):
 @app.get("/delete")
 def delete(spr_no:str):
 
-    sql = "DELETE FROM STU WHERE spr_no ='" + spr_no + "'"
+    sql = "DELETE FROM stu WHERE spr_no ='" + spr_no + "'"
     mycursor.execute(sql)
     mydb.commit()
     return {"message": "Data deleted successfully"}
@@ -128,12 +128,12 @@ def view():
 
 @app.get("/view2")
 def view():
-    mycursor.execute("SELECT * from FEES")
+    mycursor.execute("SELECT * from fees")
     myresult = mycursor.fetchall()
     return{"PAYMENT DETAILS":myresult}
 @app.get("/all")
 def all():
-    sql= "SELECT STU.SPR_NO,STU.NAME,STU.DEPT,STU.PH_NO,STU.TUSION_FEES,STU.HOSTEL_FEES,STU.MESS_FEES,STU.BUS_FEES,STU.maintances_fees ,FEES.DETAIL,FEES.BILL_NO,FEES.BILL_DATE,FEES.AMT_PAYED,FEES.METHOD FROM STU INNER JOIN FEES ON STU.SPR_NO = FEES.SPR_NO GROUP BY STU.SPR_NO,STU.NAME,STU.DEPT,STU.PH_NO,STU.TUSION_FEES,STU.HOSTEL_FEES,STU.MESS_FEES,STU.BUS_FEES,STU.maintances_fees ,FEES.DETAIL,FEES.BILL_NO,FEES.BILL_DATE,FEES.AMT_PAYED,FEES.METHOD "
+    sql= "SELECT stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method FROM stu INNER JOIN fess ON stu.spr_no = fess.spr_no GROUP BY  stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method"
     mycursor.execute(sql)
     myresult = mycursor.fetchall()
     return {"PAYMENT DETAILS": myresult}
@@ -141,14 +141,14 @@ def all():
 @app.get("/det")
 def det(spr_no: int):
     val=(spr_no,)
-    sql="SELECT STU.SPR_NO,STU.NAME,STU.DEPT,STU.PH_NO,STU.TUSION_FEES,STU.HOSTEL_FEES,STU.MESS_FEES,STU.BUS_FEES,STU.maintances_fees ,FEES.DETAIL,FEES.BILL_NO,FEES.BILL_DATE,FEES.AMT_PAYED,FEES.METHOD FROM STU INNER JOIN FEES ON STU.SPR_NO = FEES.SPR_NO where fees.spr_no= %s GROUP BY STU.SPR_NO,STU.NAME,STU.DEPT,STU.PH_NO,STU.TUSION_FEES,STU.HOSTEL_FEES,STU.MESS_FEES,STU.BUS_FEES,STU.maintances_fees ,FEES.DETAIL,FEES.BILL_NO,FEES.BILL_DATE,FEES.AMT_PAYED,FEES.METHOD"
+    sql="SELECT stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method FROM stu INNER JOIN fees ON stu.spr_no = fess.spr_no where fees.spr_no= %s GROUP BY stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method"
     mycursor.execute(sql,val)
     myresult = mycursor.fetchall()
     return {"PAYMENT DETAILS": myresult}
 @app.get("/bet")
 def bet(from_date: date,to_date :date):
     val=(from_date,to_date)
-    sql = "SELECT STU.SPR_NO,STU.NAME,STU.DEPT,STU.PH_NO,STU.TUSION_FEES,STU.HOSTEL_FEES,STU.MESS_FEES,STU.BUS_FEES,STU.maintances_fees ,FEES.DETAIL,FEES.BILL_NO,FEES.BILL_DATE,FEES.AMT_PAYED,FEES.METHOD FROM STU INNER JOIN FEES ON STU.SPR_NO = FEES.SPR_NO where bill_date between %s and %s GROUP BY STU.SPR_NO,STU.NAME,STU.DEPT,STU.PH_NO,STU.TUSION_FEES,STU.HOSTEL_FEES,STU.MESS_FEES,STU.BUS_FEES,STU.maintances_fees ,FEES.DETAIL,FEES.BILL_NO,FEES.BILL_DATE,FEES.AMT_PAYED,FEES.METHOD"
+    sql = "SELECT stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method FROM stu INNER JOIN fees ON stu.spr_no = fees.spr_no where bill_date between %s and %s GROUP BY stu.spr_no,stu.name,stu.dept,stu.ph_no,stu.tusion_fees,stu.hostel_fees,stu.mess_fees,stu.bus_fees,stu.maintances_fees ,fees.details,fess.bill_no,fess.bill_date,fees.amt_payed,fees.method"
     mycursor.execute(sql, val)
     myresult = mycursor.fetchall()
     return {"PAYMENT DETAILS": myresult}
