@@ -29,11 +29,11 @@ def insert( spr_no : int,
 
 @app.get("/fees/")
 def fees(spr_no:int,
-         detail:str,
+         details:str,
          bill_no : int,
+         bill_date : date,
          amt_payed : int,
-         method : str,
-         bill_date : date):
+         method : str):
     sql = "INSERT INTO fees VALUES(%s,%s,%s,%s,%s,%s)"
     val = (spr_no, detail, bill_no,amt_payed, method,bill_date)
     mycursor.execute(sql,val)
