@@ -67,47 +67,47 @@ def update3(spr_no :int , dept:str):
 @app.patch("/update4")
 def update4(spr_no :int , ph:int):
     sql = "UPDATE stu SET ph_no = %s WHERE spr_no =%s"
-    val = (ph, spr_no)
+    val = (ph_no, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
     return {"Message": "PHONE NO  updated successfully "}
 
 @app.patch("/update5")
-def update5(spr_no :int , tf :int):
+def update5(spr_no :int , tusion_fees :int):
     sql = "UPDATE stu SET  tusion_fees = %s WHERE spr_no =%s"
-    val = (tf, spr_no)
+    val = (tusion_fees, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
     return {"Message": "TUSION FEES  updated successfully "}
 
 @app.patch("/update6")
-def update6(spr_no :int , hf :int):
+def update6(spr_no :int , hostel_fees :int):
     sql = "UPDATE stu SET  hostel_fees = %s WHERE spr_no =%s"
-    val = (hf, spr_no)
+    val = (hostel_fees, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
     return {"Message": "HOSTEL FEES  updated successfully "}
 
 @app.patch("/update7")
-def update7(spr_no :int , bf :int):
+def update7(spr_no :int , bus_fees :int):
     sql = "UPDATE stu SET  bus_fees = %s WHERE spr_no =%s"
-    val = (bf, spr_no)
+    val = (bus_fees, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
     return {"Message": "BUS FEES updated successfully "}
 
 @app.patch("/update8")
-def update8(spr_no :int , mf :int):
+def update8(spr_no :int , mess_fees :int):
     sql = "UPDATE stu SET  mess_fees = %s WHERE spr_no =%s"
-    val = (mf, spr_no)
+    val = (mess_fees, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
     return {"Message": "MESS FEES updated successfully "}
 
 @app.patch("/update9")
-def update9(spr_no :int , mtf :int):
+def update9(spr_no :int , maintances_fees :int):
     sql = "UPDATE stu SET  maintances_fees = %s WHERE spr_no =%s"
-    val = (mtf, spr_no)
+    val = (maintances_fees, spr_no)
     mycursor.execute(sql, val)
     mydb.commit()
     return {"Message": "MANITANCES FEES updated successfully "}
