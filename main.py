@@ -65,7 +65,7 @@ def update3(spr_no :int , dept:str):
     return {"Message": "DEPT updated successfully "}
 
 @app.patch("/update4")
-def update4(spr_no :int , ph:int):
+def update4(spr_no :int , ph_no:int):
     sql = "UPDATE stu SET ph_no = %s WHERE spr_no =%s"
     val = (ph_no, spr_no)
     mycursor.execute(sql, val)
