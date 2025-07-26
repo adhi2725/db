@@ -9,7 +9,8 @@ mydb = mysql.connector.connect(
     password="4227ca4efc7d0fa1193fef328a8792f427b6774e",
     database= "clgfees_towertrace",
     port="3307",
-     connection_timeout=60
+    connection_timeout=60,
+    autocommit=True
 )
 mycursor =mydb.cursor()
 @app.get("/insert/")
