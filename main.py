@@ -8,7 +8,8 @@ mydb = mysql.connector.connect(
     user = "clgfees_towertrace",
     password="4227ca4efc7d0fa1193fef328a8792f427b6774e",
     database= "clgfees_towertrace",
-    port="3307"
+    port="3307",
+     connection_timeout=60
 )
 mycursor =mydb.cursor()
 @app.get("/insert/")
